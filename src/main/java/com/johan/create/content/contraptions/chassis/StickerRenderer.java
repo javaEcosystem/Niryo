@@ -1,0 +1,49 @@
+package com.johan.create.content.contraptions.chassis;
+
+import com.jozufozu.flywheel.backend.Backend;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.johan.create.AllPartialModels;
+import com.johan.create.foundation.blockEntity.renderer.SafeBlockEntityRenderer;
+import com.johan.create.foundation.render.CachedBufferer;
+import com.johan.create.foundation.render.SuperByteBuffer;
+import com.johan.create.foundation.utility.AngleHelper;
+import com.johan.create.foundation.utility.AnimationTickHolder;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.state.BlockState;
+
+public class StickerRenderer extends SafeBlockEntityRenderer<StickerBlockEntity> {
+
+	public StickerRenderer(BlockEntityRendererProvider.Context context) {
+	}
+
+	@Override
+	protected void renderSafe(StickerBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource buffer,
+		int light, int overlay) {
+
+		if (Backend.canUseInstancing(be.getLevel())) return;
+
+		BlockState state = be.getBlockState();
+		SuperByteBuffer head = CachedBufferer.partial(AllPartialModels.STICKER_HEAD, state);
+		float offset = be.piston.getValue(AnimationTickHolder.getPartialTicks(be.getLevel()));
+
+		if (be.getLevel() != Minecraft.getInstance().level && !be.isVirtual())
+			offset = state.getValue(StickerBlock.EXTENDED) ? 1 : 0;
+
+		Direction facing = state.getValue(StickerBlock.FACING);
+		head.nudge(be.hashCode())
+			.centre()
+			.rotateY(AngleHelper.horizontalAngle(facing))
+			.rotateX(AngleHelper.verticalAngle(facing) + 90)
+			.unCentre()
+			.translate(0, (offset * offset) * 4 / 16f, 0);
+
+		head.light(light)
+			.renderInto(ms, buffer.getBuffer(RenderType.solid()));
+	}
+
+}
