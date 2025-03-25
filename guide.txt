@@ -4,7 +4,7 @@ J'ai seulement ajouté du code à partir de la ligne 197 dans la classe principa
 Pour lancer Minecraft ouvrez l'onglet Gradle en haut à droite sur le logiciel IntelliJ IDEA et développez les dossiers comme suit: Create/Tasks/forgegradle runs/, puis double-clickez sur runClient.
 Ou si vous aimez utiliser le terminal, utilisez la commande suivante : ./gradlew runClient
 De la même façon, pour construire le fichier .jar (le mod) : ./gradlew build , naviguez ensuite dans ./build/libs/ pour le trouver
-La majorité du code a été réalisé par l'équipe de développeurs du mod Create, alors veuillez à respecter les termes de la licence.
+La majorité du code a été réalisé par l'équipe de développeurs du mod Create, alors veillez à respecter les termes de la licence.
 
 Je vous invite fortement à utiliser le logiciel IntelliJ IDEA, c'est le meilleur pour coder en Java: https://www.jetbrains.com/idea/ . La version community est très bien.
 Je vous conseille également d'utiliser Java 17.
@@ -13,7 +13,7 @@ Pour appliquer Java 17 au projet,
     -> appliquez la version temurin-17 au SDK en clickant sur télécharger JDK, avec les éléments: Version:17 Vendeur:Eclipse Temurin
     -> appliquez LTS-17 au language level
     -> clickez sur Apply
-    -> clickez sur File/Settings/Build, Execution, Deployment/Build Tools/Gradle, puis Vérifiez ces éléments: Distribution:Wrapper et Gradle JVM:temurin-17
+    -> clickez sur File/Settings/Build, Execution, Deployment/Build Tools/Gradle, puis vérifiez ces éléments: Distribution:Wrapper et Gradle JVM:temurin-17
 
 Vous avez maintenant les clés pour enrichir ce mod.
 Je vous conseille ce Youtubeur si vous souhaitez en apprendre plus sur les librairies Minecraft et le modding en général : https://www.youtube.com/@ModdingByKaupenjoe
